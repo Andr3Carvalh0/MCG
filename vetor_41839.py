@@ -63,12 +63,20 @@ class Vetor3D:
         return (self.x * outro_vetor) + (self.y * outro_vetor) + (self.z * outro_vetor)
     
     def externo(self, outro_vetor):
+        # a = self
+        # b = outro_vetor
         
-        return (self.x * outro_vetor) + (self.y * outro_vetor) + (self.z * outro_vetor)
+        ax = self.x
+        ay = self.y
+        az = self.z
+        
+        bx = outro_vetor.x
+        by = outro_vetor.y
+        bz = outro_vetor.z
     
-    
-    
+        x = ay * bz - az * by   
+        y = -(ax * bz - az * bx)
+        z = ax * by - ay * bx
         
-        
-        
+        return Vetor3D(x, y, z)
     
