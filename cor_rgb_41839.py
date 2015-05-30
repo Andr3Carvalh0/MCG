@@ -35,14 +35,7 @@ class CorRGB:
             return self.multiplica_escalar(valor)
         else:
             return self.multiplica(valor)
-        
-        
-        
-        
-        
-        
-        
-        
+
 if __name__ == "__main__":
     
     c1 = CorRGB(0.0, 0.0, 0.0)
