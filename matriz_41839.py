@@ -101,23 +101,23 @@ class Matriz:
         h = self.linhas[2][1]
         i = self.linhas[2][2]
          
-        return a*e*i + b*f*g + d*h*c \
-                - c*e*g - b*d*i - h*f*a
+        return (a*e*i) + (b*f*g) + (d*h*c) - (c*e*g) - (b*d*i) - (h*f*a)
 
     def sub_matriz(self, linha_a_remover, coluna_a_remover):
-        resultado = Matriz(self.numero_linhas-1, self.numero_colunas-1)
 
+        resultado = Matriz(self.numero_linhas-1, self.numero_colunas-1)
         for l in range(resultado.numero_linhas):
             for c in range(resultado.numero_colunas):
                 lindex = l
                 cindex = c
-
                 if l >= linha_a_remover-1:
                     lindex = l + 1
+                
                 if c >= coluna_a_remover-1:
                     cindex = c + 1
-                    resultado.linhas[l][c] = self.linhas[lindex][cindex]
-                return resultado
+                
+                resultado.linhas[l][c] = self.linhas[lindex][cindex]
+        return resultado
     
     def det(self):
         if self.numero_linhas == 1:
@@ -129,7 +129,7 @@ class Matriz:
         else:
             resultado = 0.0
             for n in range(self.numero_colunas):
-                resultado = resultado + ((-1)**n) * (self.linhas[0][n]) * (self.sub_matriz(1,n+1).det())            
+                resultado = resultado + (-1)**n * self.linhas[0][n] * self.sub_matriz(1,n+1).det()
             return resultado
 
     def copia(self):
@@ -144,12 +144,9 @@ class Matriz:
        
     def set_linha(self, linha, uma_lista):
         for c in range(len(uma_lista)):
-            self.linhas[linha - 1][c] = uma_lista[c]
-            
+            self.linhas[linha-1][c] = uma_lista[c]
+   
         return self
-            
-        
-        
 
     def set_coluna(self, coluna, uma_lista):
         for l in range(len(uma_lista)):
