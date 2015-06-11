@@ -100,8 +100,9 @@ class Matriz:
         g = self.linhas[2][0]
         h = self.linhas[2][1]
         i = self.linhas[2][2]
-        
-        return a*e*i + b*f*g + d*h*c - c*e*g - b*d*i - h*f*a
+         
+        return a*e*i + b*f*g + d*h*c \
+                - c*e*g - b*d*i - h*f*a
 
     def sub_matriz(self, linha_a_remover, coluna_a_remover):
         resultado = Matriz(self.numero_linhas-1, self.numero_colunas-1)
@@ -127,10 +128,9 @@ class Matriz:
             return self.det_3x3()
         else:
             resultado = 0.0
-        for n in range(self.numero_colunas):
-            resultado = resultado + (-1)**n * self.linhas[0][n] * self.sub_matriz(1,n+1).det()
-    
-        return resultado
+            for n in range(self.numero_colunas):
+                resultado = resultado + ((-1)**n) * (self.linhas[0][n]) * (self.sub_matriz(1,n+1).det())            
+            return resultado
 
     def copia(self):
         mCopia = Matriz(self.numero_linhas, self.numero_colunas)
@@ -276,3 +276,5 @@ if __name__ == "__main__":
     m9.set_coluna(3, [10.0, 20.0, 30.0, 40.0, 50.0])
     print(m9)
     print("--------------------------------------------")
+        
+        
