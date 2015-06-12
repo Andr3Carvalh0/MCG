@@ -37,7 +37,66 @@ class CorRGB:
             return self.multiplica(valor)
 
 if __name__ == "__main__":
-    
+    # testes ao construtor
+    c1 = CorRGB(1.0, 0.0, 0.0) # vermelho
+    c2 = CorRGB(0.0, 1.0, 0.0) # verde
+    c3 = CorRGB(0.0, 0.0, 1.0) # azul
+    c4 = CorRGB(1.0, 1.0, 1.0) # branco
+    c5 = CorRGB(0.0, 0.0, 0.0) # preto
+    # testes ao método __str__
+    c1 = CorRGB(1.0, 0.0, 0.0)
+    print(c1)
+    print("c1 = " + str(c1))
+    # mais testes ao construtor
+    c2 = CorRGB(-0.1, 0.1, 1.1)
+    print(c2)
+    # testes ao método soma
+    c1 = CorRGB(1.0, 0.0, 0.0) # vermelho
+    c2 = CorRGB(0.0, 1.0, 0.0) # verde
+    c3 = CorRGB(1.0, 1.0, 1.0) # branco
+    c4 = c1.soma(c2)
+    c5 = c1.soma(c3)
+    print(c4)
+    print(c5)
+    # testes ao operador +
+    c1 = CorRGB(1.0, 0.0, 0.0) # vermelho
+    c2 = CorRGB(0.0, 1.0, 0.0) # verde
+    c3 = CorRGB(1.0, 1.0, 1.0) # branco
+    c4 = c1 + c2
+    c5 = c1 + c3
+    print(c4)
+    print(c5)
+    # testes ao método set_hsv
     c1 = CorRGB(0.0, 0.0, 0.0)
     c1.set_hsv(360.0, 1.0, 1.0)
     print(c1)
+    # testes ao método multiplica
+    c1 = CorRGB(1.0, 0.0, 0.0)
+    c2 = CorRGB(1.0, 1.0, 1.0)
+    c3 = CorRGB(0.0, 0.0, 0.0)
+    c4 = c1.multiplica(c2)
+    c5 = c1.multiplica(c3)
+    print(c4)
+    print(c5)
+    # testes ao método multiplica_escalar
+    c1 = CorRGB(1.0, 1.0, 1.0)
+    e1 = 0.0
+    e2 = 0.5
+    e3 = 1.0
+    e4 = 2.0
+    c2 = c1.multiplica_escalar(e1)
+    c3 = c1.multiplica_escalar(e2)
+    c4 = c1.multiplica_escalar(e3)
+    c5 = c1.multiplica_escalar(e4)
+    print(c2)
+    print(c3)
+    print(c4)
+    print(c5)
+    # testes ao operador *
+    c1 = CorRGB(1.0, 1.0, 1.0)
+    c2 = CorRGB(0.0, 0.5, 1.0)
+    e1 = 0.5
+    c3 = c1 * c2 # segundo operando do tipo CorRGB
+    c4 = c1 * e1 # segundo operando do tipo float (um escalar)
+    print(c3)
+    print(c4)

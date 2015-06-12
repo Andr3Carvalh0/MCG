@@ -47,4 +47,50 @@ class Ponto3D:
     def __sub__(self, ponto_inicial):
         
         return self.subtrai_ponto(ponto_inicial)
-        
+    
+    
+    
+    
+if __name__ == "__main__":
+    # teste ao construtor
+    p1 = Ponto3D(1.0, 2.0, 3.0)
+    
+    # teste a get_x
+    print("coordenada x de p1 = ")
+    print(p1.get_x())
+
+    # teste a get_y
+    print("coordenada y de p1 = ")
+    print(p1.get_y())
+    
+    # teste a get_z
+    print("coordenada z de p1 = ")
+    print(p1.get_z())
+    
+    # teste a __str__
+    print("p1 = ")
+    print(p1)
+    
+    # teste a adiciona_vetor
+    v1 = Vetor3D(10.0, 20.0, 30.0)
+    p2 = p1.adiciona_vetor(v1)
+    print("v1 = ")
+    print(v1)
+    print("p2 = ")
+    print(p2)
+    
+    # teste a +
+    p3 = p1 + v1
+    print("p3 = p1 + v1 = ")
+    print(p3)
+    
+    # teste a subtrai_ponto
+    v2 = p2.subtrai_ponto(p1)
+    print("v2 = ")
+    print(v2)
+    
+    # teste a -
+    v3 = p2 - p1
+    print("v3 = ")
+    print(v3)
+    

@@ -22,3 +22,22 @@ class LuzPontual:
 
     def get_intensidade_especular(self):
         return self.intensidade_especular
+    
+# testes
+if __name__ == "__main__":
+    # teste ao construtor
+    posicao = Ponto3D(1.0, 2.0, 3.0)
+    i_ambiente = CorRGB(0.1, 0.2, 0.3)
+    i_difusa = CorRGB(0.4, 0.5, 0.6)
+    i_especular = CorRGB(0.7, 0.8, 0.9)
+    luz = LuzPontual(posicao, i_ambiente, i_difusa, i_especular)
+    # teste a __str__
+    print(luz)
+    # teste a get_posicao
+    print(luz.get_posicao())
+    # teste a get_intensidade_ambiente
+    print(luz.get_intensidade_ambiente())
+    # teste a get_intensidade_difusa
+    print(luz.get_intensidade_difusa())
+    # teste a get_intensidade_especular
+    print(luz.get_intensidade_especular())
