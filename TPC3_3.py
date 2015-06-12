@@ -2,7 +2,6 @@ from matriz_41839 import Matriz
 
 # teste adicional a determinantes de matrizes de 9x9
 matriz_A = Matriz(9, 9)
-
 matriz_A.set_linha(1, [3.0, 0.0, 0.0, 4.0, 0.0, 0.0, 5.0, 0.0, 0.0])
 matriz_A.set_linha(2, [0.0, 3.0, 0.0, 0.0, 4.0, 0.0, 0.0, 5.0, 0.0])
 matriz_A.set_linha(3, [0.0, 0.0, 3.0, 0.0, 0.0, 4.0, 0.0, 0.0, 5.0])
@@ -14,7 +13,6 @@ matriz_A.set_linha(6, [0.0, 0.0, 6.0, 0.0, 0.0, 16.0, 0.0, 0.0, 17.0])
 matriz_A.set_linha(7, [3.0, 0.0, 0.0, 4.0, 0.0, 0.0, 7.0, 0.0, 0.0])
 matriz_A.set_linha(8, [0.0, 3.0, 0.0, 0.0, 4.0, 0.0, 0.0, 7.0, 0.0])
 matriz_A.set_linha(9, [0.0, 0.0, 3.0, 0.0, 0.0, 4.0, 0.0, 0.0, 7.0])
-
 det_A = matriz_A.det()
 print("det(A) = " + str(det_A))
 
@@ -28,7 +26,6 @@ matriz_A6 = matriz_A.copia()
 matriz_A7 = matriz_A.copia()
 matriz_A8 = matriz_A.copia()
 matriz_A9 = matriz_A.copia()
-
 matriz_A1.set_coluna(1, lista_B)
 matriz_A2.set_coluna(2, lista_B)
 matriz_A3.set_coluna(3, lista_B)
@@ -38,8 +35,7 @@ matriz_A6.set_coluna(6, lista_B)
 matriz_A7.set_coluna(7, lista_B)
 matriz_A8.set_coluna(8, lista_B)
 matriz_A9.set_coluna(9, lista_B)
-
-a = matriz_A1.det()/det_A 
+a = matriz_A1.det()/det_A
 print("a = " + str(round(a, 3)))
 b = matriz_A2.det()/det_A
 print("b = " + str(round(b, 3)))
@@ -57,13 +53,11 @@ h = matriz_A8.det()/det_A
 print("h = " + str(round(h, 3)))
 i = matriz_A9.det()/det_A
 print("i = " + str(round(i, 3)))
-
 # verificação
 matriz_M = Matriz(3, 3)
-matriz_M.set_linha(1, [3.0, 4.0, 5.0])
-matriz_M.set_linha(2, [6.0, 16.0, 17.0])
-matriz_M.set_linha(3, [3.0, 4.0, 7.0])
-
+matriz_M.set_linha(1, [4.0, 5.0, 7.0])
+matriz_M.set_linha(2, [6.0, 9.0, 8.0])
+matriz_M.set_linha(3, [1.0, 2.0, 3.0])
 matriz_M_inversa = Matriz(3, 3)
 matriz_M_inversa.set_linha(1, [a, b, c])
 matriz_M_inversa.set_linha(2, [d, e, f])
@@ -72,11 +66,11 @@ matriz_I = matriz_M * matriz_M_inversa
 print(matriz_I)
 print("Entradas de matriz_I com 3 casas decimais")
 print(str(round(matriz_I.get_entrada(1,1), 3)) + " "
-+ str(round(matriz_I.get_entrada(1,2), 3)) + " "
-+ str(round(matriz_I.get_entrada(1,3), 3)))
+      + str(round(matriz_I.get_entrada(1,2), 3)) + " "
+      + str(round(matriz_I.get_entrada(1,3), 3)))
 print(str(round(matriz_I.get_entrada(2,1), 3)) + " "
-+ str(round(matriz_I.get_entrada(2,2), 3)) + " "
-+ str(round(matriz_I.get_entrada(2,3), 3)))
+      + str(round(matriz_I.get_entrada(2,2), 3)) + " "
+      + str(round(matriz_I.get_entrada(2,3), 3)))
 print(str(round(matriz_I.get_entrada(3,1), 3)) + " "
-+ str(round(matriz_I.get_entrada(3,2), 3)) + " "
-+ str(round(matriz_I.get_entrada(3,3), 3)))
+      + str(round(matriz_I.get_entrada(3,2), 3)) + " "
+      + str(round(matriz_I.get_entrada(3,3), 3)))
