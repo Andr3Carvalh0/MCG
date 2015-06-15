@@ -9,7 +9,7 @@ matriz_A.set_linha(4, [9.0, 2.0, 6.0, 0.0])
 det_A = matriz_A.det()
 print("det(A) = " + str(det_A))
 
-lista_B = [9.0, 3.0, 8.0, -7.0]
+lista_B = [2.0, -3.0, 0.0, -7.0]
 matriz_A1 = matriz_A.copia()
 matriz_A2 = matriz_A.copia()
 matriz_A3 = matriz_A.copia()
