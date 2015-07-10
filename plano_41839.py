@@ -133,28 +133,34 @@ class Plano:
         
         
 if __name__ == "__main__":
-    # teste ao construtor
+    print("teste ao construtor")
     a = Ponto3D(0.0, 0.0, 0.0)
     b = Ponto3D(2.0, 0.0, 0.0)
     c = Ponto3D(0.0, 2.0, 0.0)
     plano1 = Plano(a, b, c)
     print("Até aqui não foram lançadas exceções.")
-    # teste a TOLERANCIA_ZERO
+    
+    print()
+    print("teste a TOLERANCIA_ZERO")
     print("TOLERANCIA_ZERO = " + str(TOLERANCIA_ZERO))
-    # teste à exceção ErroPontosColineares
+    
+    print()
+    print("teste à exceção ErroPontosColineares")
     try:
         plano2 = Plano(a, b, b)
     except ErroPontosColineares:
         print("Ao tentar definir-se o plano plano2 = Plano(a, b, c)")
         print("foi lançada a exceção ErroPontosColineares.")
         print("A execução foi interrompida. plano2 não ficou definida.")
-    # teste a __str__
+    
+    print()
+    print("teste a __str__")
     # a normal tem que apontar no sentido do eixo dos z’s
     # e tem que ter comprimento 1
     print(plano1)
                 
-                
-    # testes a interceta_triangulo
+    print()
+    print("testes a interceta_triangulo")
     p1 = Ponto3D(1.0, 1.0, 10.0)
     p2 = Ponto3D(1.0, 1.0, 5.0)
     r1 = Reta(p1, p2)

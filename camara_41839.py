@@ -18,7 +18,7 @@ class Camara:
         eixo_z = ((olhar_para - posicao).versor())
         eixo_y = (vertical + eixo_z * (-1.0 * vertical.interno(eixo_z))).versor()
         eixo_x = eixo_z.externo(eixo_y)
-        
+            
         self.eixo_x = eixo_x
         self.eixo_y = eixo_y
         self.eixo_z = eixo_z
@@ -61,14 +61,14 @@ class Camara:
         self.matriz = matriz
      
     def __str__(self):
-        return "Camara(" + str(posicao) + ", \n" \
-            + str(olhar_para) + ", \n"\
-            + str(vertical) + ", \n"\
-            + str(distancia_olho_plano_projecao) + ", \n"\
-            + str(largura_retangulo_projecao) + ", \n"\
-            + str(altura_retangulo_projecao) + ", \n"\
-            + str(resolucao_horizontal) + ", \n"\
-            + str(resolucao_vertical) + ", \n"\
+        return "Camara(" + str(self.posicao) + ", \n" \
+            + str(self.olhar_para) + ", \n"\
+            + str(self.vertical) + ", \n"\
+            + str(self.distancia_olho_plano_projecao) + ", \n"\
+            + str(self.largura_retangulo_projecao) + ", \n"\
+            + str(self.altura_retangulo_projecao) + ", \n"\
+            + str(self.resolucao_horizontal) + ", \n"\
+            + str(self.resolucao_vertical) + ", \n"\
             \
             + str(self.eixo_x) + ", \n"\
             + str(self.eixo_y) + ", \n"\
@@ -80,13 +80,13 @@ class Camara:
             + str(self.canto_superior_esquerdo_y) + ", \n"\
             + str(self.canto_superior_esquerdo_z) + ", \n"\
             \
-            + str(self.matriz) + "\n"
+            + str(self.matriz) + ")"
 
             
         
     def get_pixel_local(self, linha, coluna):
-        x = self.canto_superior_esquerdo_x + self.incremento_horizontal * (coluna - 1)
-        y = self.canto_superior_esquerdo_y + self.incremento_vertical * (linha - 1)
+        x = self.canto_superior_esquerdo_x + self.incremento_horizontal * (coluna-1)
+        y = self.canto_superior_esquerdo_y + self.incremento_vertical * (linha-1)
         z = self.distancia_olho_plano_projecao
     
         pixel = Ponto3D(x,y,z)
@@ -127,52 +127,75 @@ if __name__ == "__main__":
     resolucao_vertical = 5
     camara = Camara(posicao, olhar_para, vertical, distancia_olho_plano_projecao, largura_retangulo_projecao, altura_retangulo_projecao, resolucao_horizontal, resolucao_vertical)
     
-    # teste a __str__
+    print()
+    print("teste a __str__")
     print(camara)
     
-    # teste a get_pixel_local
+    print()
+    print("teste a get_pixel_local")
     print("sistema de coordenadas LOCAL")
     print("canto superior esquerdo = ")
     p1 = camara.get_pixel_local(1, 1)
     print(p1)
+    print()
+    
     print("canto superior direito = ")
     p2 = camara.get_pixel_local(1, 5)
     print(p2)
+    print()
+    
     print("canto inferior esquerdo = ")
     p3 = camara.get_pixel_local(5, 1)
     print(p3)
+    print()
+    
     print("canto inferioror direito = ")
     p4 = camara.get_pixel_local(5, 5)
     print(p4)
+    print()
     
-    # teste a local_para_global
+    
+    print("teste a local_para_global")
     print("sistema de coordenadas GLOBAL")
     print("canto superior esquerdo = ")
     p1_global = camara.local_para_global(p1)
     print(p1_global)
+    print()
+    
     print("canto superior direito = ")
     p2_global = camara.local_para_global(p2)
     print(p2_global)
+    print()
+    
     print("canto inferior esquerdo = ")
     p3_global = camara.local_para_global(p3)
     print(p3_global)
+    print()
+    
     print("canto inferioror direito = ")
     p4_global = camara.local_para_global(p4)
     print(p4_global)
+    print()
     
-    # teste a get_pixel_global
+    print("teste a get_pixel_global")
     print("sistema de coordenadas GLOBAL")
     print("canto superior esquerdo = ")
     p5 = camara.get_pixel_global(1, 1)
     print(p5)
+    print()
+    
     print("canto superior direito = ")
     p6 = camara.get_pixel_global(1, 5)
     print(p6)
+    print()
+    
     print("canto inferior esquerdo = ")
     p7 = camara.get_pixel_global(5, 1)
     print(p7)
+    print()
+    
     print("canto inferioror direito = ")
     p8 = camara.get_pixel_global(5, 5)
     print(p8)
-    
+    print()
     

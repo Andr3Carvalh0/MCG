@@ -48,23 +48,32 @@ class Imagem:
    
     # testes
 if __name__ == "__main__":
-    # teste ao construtor
+    
+    print("teste ao construtor")
     imagem1 = Imagem(5, 5)
-    # teste a __str__
+    
+    print()
+    print("teste a __str__")
     imagem2 = Imagem(5, 5)
     print(imagem2)
-    # teste a set_cor
+    
+    print()
+    print("teste a set_cor")
     imagem3 = Imagem(5, 5)
     branco = CorRGB(1.0, 1.0, 1.0)
     imagem3.set_cor(3, 3, branco)
     print(imagem3)
-    # testes a get_cor
+    
+    print()
+    print("testes a get_cor")
     imagem4 = Imagem(5, 5)
     branco = CorRGB(1.0, 1.0, 1.0)
     imagem4.set_cor(3, 3, branco)
     print(imagem4.get_cor(3, 3))
     print(imagem4.get_cor(5, 5))
-    # teste a guardar_como_ppm
+    
+    print()
+    print("teste a guardar_como_ppm")
     imagem5 = Imagem(3, 5)
     red = CorRGB(1.0, 0.0, 0.0)
     green = CorRGB(0.0, 1.0, 0.0)
@@ -73,7 +82,9 @@ if __name__ == "__main__":
     imagem5.set_cor(2, 3, green)
     imagem5.set_cor(2, 4, blue)
     imagem5.guardar_como_ppm("imagem5.ppm")
-    # teste adicional
+    
+    print()
+    print("teste adicional")
     linhas = 100
     colunas = 200
     imagem6 = Imagem(linhas, colunas)

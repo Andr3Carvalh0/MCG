@@ -37,20 +37,25 @@ class CorRGB:
             return self.multiplica(valor)
 
 if __name__ == "__main__":
-    # testes ao construtor
+    print("testes ao construtor")
     c1 = CorRGB(1.0, 0.0, 0.0) # vermelho
     c2 = CorRGB(0.0, 1.0, 0.0) # verde
     c3 = CorRGB(0.0, 0.0, 1.0) # azul
     c4 = CorRGB(1.0, 1.0, 1.0) # branco
     c5 = CorRGB(0.0, 0.0, 0.0) # preto
-    # testes ao método __str__
+    print("")
+    print("testes ao método __str__")
     c1 = CorRGB(1.0, 0.0, 0.0)
     print(c1)
     print("c1 = " + str(c1))
-    # mais testes ao construtor
+    
+    print("")
+    print("mais testes ao construtor")
     c2 = CorRGB(-0.1, 0.1, 1.1)
     print(c2)
-    # testes ao método soma
+    
+    print("")
+    print("testes ao método soma")
     c1 = CorRGB(1.0, 0.0, 0.0) # vermelho
     c2 = CorRGB(0.0, 1.0, 0.0) # verde
     c3 = CorRGB(1.0, 1.0, 1.0) # branco
@@ -58,7 +63,9 @@ if __name__ == "__main__":
     c5 = c1.soma(c3)
     print(c4)
     print(c5)
-    # testes ao operador +
+    
+    print("")
+    print("testes ao operador +")
     c1 = CorRGB(1.0, 0.0, 0.0) # vermelho
     c2 = CorRGB(0.0, 1.0, 0.0) # verde
     c3 = CorRGB(1.0, 1.0, 1.0) # branco
@@ -66,11 +73,15 @@ if __name__ == "__main__":
     c5 = c1 + c3
     print(c4)
     print(c5)
-    # testes ao método set_hsv
+    
+    print("")
+    print("testes ao método set_hsv")
     c1 = CorRGB(0.0, 0.0, 0.0)
     c1.set_hsv(360.0, 1.0, 1.0)
     print(c1)
-    # testes ao método multiplica
+    
+    print("")
+    print("testes ao método multiplica")
     c1 = CorRGB(1.0, 0.0, 0.0)
     c2 = CorRGB(1.0, 1.0, 1.0)
     c3 = CorRGB(0.0, 0.0, 0.0)
@@ -78,7 +89,9 @@ if __name__ == "__main__":
     c5 = c1.multiplica(c3)
     print(c4)
     print(c5)
-    # testes ao método multiplica_escalar
+    
+    print("")
+    print("testes ao método multiplica_escalar")
     c1 = CorRGB(1.0, 1.0, 1.0)
     e1 = 0.0
     e2 = 0.5
@@ -92,7 +105,9 @@ if __name__ == "__main__":
     print(c3)
     print(c4)
     print(c5)
-    # testes ao operador *
+   
+    print("")
+    print("testes ao operador *")
     c1 = CorRGB(1.0, 1.0, 1.0)
     c2 = CorRGB(0.0, 0.5, 1.0)
     e1 = 0.5

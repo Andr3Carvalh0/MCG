@@ -25,12 +25,13 @@ class Reta:
 
 
 if __name__ == "__main__":
-    # teste ao construtor
+    print("teste ao construtor")
     p1 = Ponto3D(0.0, 0.0, 0.0)
     p2 = Ponto3D(1.0, 2.0, 3.0)
     r1 = Reta(p1, p2)
     print("Até aqui não foram lançadas exceções.")
-    # teste à exceção ErroPontosCoincidentes
+    print()
+    print("teste à exceção ErroPontosCoincidentes")
     try:
         r2 = Reta(p2, p2)
     except ErroPontosCoicidentes:
@@ -38,6 +39,6 @@ if __name__ == "__main__":
         print("foi lançada a exceção ErroPontosCoincidentes.")
         print("A execução foi interrompida. r2 não ficou definida.")
         
-        
-    # teste a __str__
+    print()
+    print("teste a __str__")
     print(r1)

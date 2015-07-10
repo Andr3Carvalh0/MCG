@@ -53,16 +53,15 @@ class Matriz:
         return resultado
 
     def multiplica(self, outra_matriz):
-        resultado = Matriz(self.numero_linhas,
-        outra_matriz.numero_colunas)
+        resultado = Matriz(self.numero_linhas,outra_matriz.numero_colunas)
         
         for l in range(resultado.numero_linhas):
             for c in range(resultado.numero_colunas):
                 valor = 0.0
 
-        for n in range(self.numero_colunas):
-            valor = valor + self.linhas[l][n] * outra_matriz.linhas[n][c]
-            resultado.linhas[l][c] = valor
+                for n in range(self.numero_colunas):
+                    valor = valor + self.linhas[l][n] * outra_matriz.linhas[n][c]
+                resultado.linhas[l][c] = valor
         return resultado
 
 
@@ -155,15 +154,14 @@ class Matriz:
         return self
         
 if __name__ == "__main__":
-    # teste ao construtor
+    print("teste ao construtor")
     m1 = Matriz(3, 4)
     
-    # teste a __str__
+    print()
     print("Testes a __str__")
     print(m1)
     print("--------------------------------------------")
    
-    # teste a set_entrada
     print("Testes a set_entrada")
     m1.set_entrada(1, 2, 1.0)
     m1.set_entrada(2, 2, 2.0)

@@ -46,17 +46,19 @@ class CorPhong:
         
     
 if __name__ == "__main__":
-    # teste ao construtor
+    print("teste ao construtor")
     material_k_ambiente = CorRGB(0.0, 0.0, 0.1)
     material_k_difusa = CorRGB(0.0, 0.0, 0.9)
     material_k_especular = CorRGB(1.0, 1.0, 1.0)
     material_brilho = 100.0
     material_cor = CorPhong(material_k_ambiente, material_k_difusa, material_k_especular, material_brilho)
     
-    # teste a __str__
+    print()
+    print("teste a __str__")
     print(material_cor)
             
-    # teste a get_cor_rgb
+    print()
+    print("teste a get_cor_rgb")
     luz_posicao = Ponto3D(1.0, 0.0, 1.0)
     luz_intensidade_ambiente = CorRGB(1.0, 1.0, 1.0)
     luz_intensidade_difusa = CorRGB(1.0, 1.0, 1.0)
