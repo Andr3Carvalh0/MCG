@@ -118,7 +118,7 @@ class Plano:
         
         t = m3.det()/m.det()
 
-        print(t)
+        #print(t)
         
         if (t<TOLERANCIA_ZERO):
             ##print("5 if, t")

@@ -86,11 +86,10 @@ class Camara:
         
     def get_pixel_local(self, linha, coluna):
         x = self.canto_superior_esquerdo_x + self.incremento_horizontal * (coluna-1)
-        y = self.canto_superior_esquerdo_y + self.incremento_vertical * (linha-1)
+        y = self.canto_superior_esquerdo_y - self.incremento_vertical * (linha-1)
         z = self.distancia_olho_plano_projecao
     
-        pixel = Ponto3D(x,y,z)
-        
+        pixel = Ponto3D(x,y,z) 
         return pixel
     
     def local_para_global(self, ponto):

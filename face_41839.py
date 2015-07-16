@@ -44,6 +44,8 @@ if __name__ == "__main__":
     # teste a __str__
     print(face1)
     
+    print(face1.get_cor_phong())
+    
     d = Ponto3D(1.0, 0.0, 0.0)
     e = Ponto3D(0.0, 0.0, 2.0)
     f = Ponto3D(0.0, 3.0, 0.0)
