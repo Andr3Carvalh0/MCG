@@ -1,4 +1,3 @@
-
 class Vetor3D:
     
     def __init__(self, x, y, z):

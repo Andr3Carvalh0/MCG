@@ -22,6 +22,13 @@ class RayTracer:
     def __init__(self, lista_faces, lista_luzes, camara, cor_fundo):
         
         #Detecao se os objectos percentem a devida classe.
+    
+        #Inicializacao        
+        self.lista_faces = lista_faces
+        self.lista_luzes = lista_luzes
+        self.camara = camara
+        self.cor_fundo = cor_fundo
+
         if not isinstance(lista_faces, list):
             ErroNaoPertence
         
@@ -32,7 +39,7 @@ class RayTracer:
             if not isinstance(lista_faces[i], FaceTriangular):
                 ErroNaoPertence
         
-        for i in range (len(lista_faces)):
+        for i in range (len(lista_luzes)):
             if not isinstance(lista_luzes[i], LuzPontual):
                 ErroNaoPertence
                 
@@ -41,12 +48,7 @@ class RayTracer:
             
         if not isinstance(cor_fundo, CorRGB):
             ErroNaoPertence
-                
-        #Inicializacao        
-        self.lista_faces = lista_faces
-        self.lista_luzes = lista_luzes
-        self.camara = camara
-        self.cor_fundo = cor_fundo
+
         
     def __str__(self):
         parcial = "RayTracer("
@@ -74,16 +76,18 @@ class RayTracer:
     def renderiza(self):
         imagem = Imagem(self.camara.resolucao_vertical, self.camara.resolucao_horizontal)
         
+        # a) Obtencao das coordenadas da camara
+        posicao_camera = self.camara.posicao
+        
         for m in range(self.camara.resolucao_vertical): # índice de linhas
             print("linha = "+ str(m+1) + " de " + str(self.camara.resolucao_vertical))
             
             for n in range(self.camara.resolucao_horizontal): # índice de colunas
-                # a) Obtencao das coordenadas da camara
-                posicao_camera = self.camara.posicao
+               
                 
                 # b) Obtencao da posicao do ponto do plano de projecao, no sistema de coordenadas
                 #    Globais
-                posicao_ponto = self.camara.get_pixel_global(m, n)
+                posicao_ponto = self.camara.get_pixel_global(m+1, n+1)
                 
                 # c) Criar uma reta com origem na camara e fim no ponto de coordenadas globais
                 reta = Reta(posicao_camera, posicao_ponto)
@@ -99,7 +103,6 @@ class RayTracer:
         ponto_intercepcao = None
         t = None
         face = None
-        primeiro_valor = True
        
         #Interceta_triangulo devolve uma lista assim_ [True/False, ponto_intercepcao, t]
         #O 1 valor da lista indica se a reta intercepta ou nao a face
@@ -114,20 +117,17 @@ class RayTracer:
         for i in range(len(self.lista_faces)):
             #Se retomarmos uma lista com valor true, faremos a compraracao entre os diferentes valores de t
             if(self.lista_faces[i].interceta_triangulo(raio)[0]):
-               
-                if(t is None):
-                    pass
-                else:
-                    if(self.lista_faces[i].interceta_triangulo(raio)[2] <= t and not primeiro_valor):
+                if(not(t is None)):
+                    if(self.lista_faces[i].interceta_triangulo(raio)[2] <= t):
                         face = self.lista_faces[i]
                         ponto_intercepcao = self.lista_faces[i].interceta_triangulo(raio)[1]
                         t = self.lista_faces[i].interceta_triangulo(raio)[2]
                 
-                    elif(primeiro_valor):
-                        face = self.lista_faces[i]
-                        ponto_intercepcao = self.lista_faces[i].interceta_triangulo(raio)[1]
-                        t = self.lista_faces[i].interceta_triangulo(raio)[2]
-                        primeiro_valor = False
+                if(t is None and not(self.lista_faces[i].interceta_triangulo(raio)[2] is None)):
+                    face = self.lista_faces[i]
+                    ponto_intercepcao = self.lista_faces[i].interceta_triangulo(raio)[1]
+                    t = self.lista_faces[i].interceta_triangulo(raio)[2]
+                    primeiro_valor = False
                     
         if(t is None):
             return [False, None, None, None]
@@ -137,41 +137,30 @@ class RayTracer:
         
     
     def get_cor_face(self, face, ponto_intercecao, direcao_olho):
-        cor = None
         
-        for i in range(len(self.lista_luzes)):
-            #Obtemos a posicao da luz
-            pos_luz = self.lista_luzes[i].posicao
+        cor = CorRGB(0.0, 0.0, 0.0)
+        for k in range(len(self.lista_luzes)):
+            reta    = Reta(ponto_intercecao, self.lista_luzes[k].posicao)   # raio que vai da luz até à face em questão
+            sombra  = self.get_face_intercetada_mais_proxima(reta)[0]       # determina se a face está em sombra, caso a reta interseta pelo menos uma face
             
-            #Construimos uma reta com inicio na face e fim na posicao da luz
-            reta = Reta(face, pos_luz) 
-            
-            direcao_luz = (pos_luz - face).versor()
-            normal = Ponto3D(0.0,0.0,1.0)
-            for m in range(len(self.lista_faces)):
-                aux = self.lista_faces[m].cor_phong
-                aux1 = CorPhong(aux)   
-                
-                #Se interceptar devolvemos a cor Phong em Sombra
-                if(self.lista_faces[m].interceta_triangulo(reta)):
-                    cor = cor + aux1.get_cor_rgb(self.lista_luzes[i], direcao_luz, normal, direcao_olho, True)
-                else:
-                    cor = cor + aux1.get_cor_rgb(self.lista_luzes[i], direcao_luz, normal, direcao_olho, False)
-                
-            
-            
+            cor += face.cor_phong.get_cor_rgb(self.lista_luzes[k],
+                                              reta.vetor_diretor,
+                                              face.normal,
+                                              direcao_olho, sombra)         # soma da contribuição de cada luz
         return cor
+    
     
     def get_cor_vista_por_raio (self, raio):
         face_mais_proxima = self.get_face_intercetada_mais_proxima(raio)
-        
+        ponto_intercecao  = self.get_face_intercetada_mais_proxima(raio)[1]   # ponto de intersecao do raio com a face
+       
         #Se nao houver nenhuma face proxima devolvemos a cor de fundo
         if(face_mais_proxima[0] == False):
             return self.cor_fundo
         
         else:
-            direcao_olho = (raio.origem - raio.destino).versor()
-            cor_face = self.get_cor_face(face_mais_proxima[3], face_mais_proxima[1], direcao_olho)
+            direcao_olho = (self.camara.posicao - ponto_intercecao).versor()
+            cor_face = self.get_cor_face(face_mais_proxima[3], ponto_intercecao, direcao_olho)
             return cor_face
         
         
